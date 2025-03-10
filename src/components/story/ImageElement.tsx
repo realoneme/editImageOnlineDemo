@@ -14,7 +14,9 @@ interface ImageElementProps {
 }
 
 const ImageElement = ({ item, isSelected, onSelect, onChange, onTransformEnd }: ImageElementProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const imageRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const transformerRef = useRef<any>(null);
   const [image] = useImage(item.content);
 
@@ -58,7 +60,7 @@ const ImageElement = ({ item, isSelected, onSelect, onChange, onTransformEnd }: 
         rotation={item.rotation}
         scaleX={item.scaleX}
         scaleY={item.scaleY}
-        alt={item.content.split('/').pop() || 'Story image'}
+        alt={item.content.split("/").pop() || "Story image"}
         onDragStart={() => onChange({ isDragging: true })}
         onDragEnd={(e) => {
           onChange({

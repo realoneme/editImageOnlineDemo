@@ -15,7 +15,9 @@ interface TextElementProps {
 
 const TextElement = ({ item, isSelected, onSelect, onChange, onTextChange, onTransformEnd }: TextElementProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const textRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const transformerRef = useRef<any>(null);
 
   // Handle node selection and transformer updates
