@@ -14,6 +14,7 @@ export interface StoryItem {
   fontSize?: number;
   fontFamily?: string;
   fill?: string;
+  align?: 'left' | 'center' | 'right';
 }
 
 export interface StoryState {

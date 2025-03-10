@@ -28,7 +28,7 @@ export function useBackgrounds() {
         setBackgrounds(data);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('An unknown error occurred'));
-        console.error('Error fetching backgrounds:', err);
+        // Error is already handled via the error state
       } finally {
         setLoading(false);
       }

@@ -18,7 +18,7 @@ const ImageElement = ({ item, isSelected, onSelect, onChange, onTransformEnd }: 
   const imageRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const transformerRef = useRef<any>(null);
-  const [image] = useImage(item.content);
+  const [image] = useImage(item.content, 'anonymous');
 
   // Handle transformer updates
   useEffect(() => {

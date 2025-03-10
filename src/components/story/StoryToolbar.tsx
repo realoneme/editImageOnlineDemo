@@ -100,59 +100,67 @@ const StoryToolbar = ({
           </button>
 
           {showBackgrounds && (
-            <div className="absolute mt-2 bg-white p-3 rounded-md shadow-lg z-10 w-72 max-h-80 overflow-y-auto">
-              <h3 className="text-gray-800 font-medium mb-2 pb-1 border-b border-gray-200">背景の選択</h3>
+            <div className="fixed bottom-16 left-0 right-0 mx-auto w-11/12 max-w-4xl bg-white p-3 rounded-md shadow-lg z-50 max-h-[60vh] overflow-y-auto">
+              <div className="flex justify-between border-b border-gray-200 pb-2 mb-3">
+                <h3 className="text-gray-800 font-medium">背景の選択</h3>
+                <button 
+                  onClick={() => setShowBackgrounds(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  ✓
+                </button>
+              </div>
 
               {loading ? (
-                <p className="text-gray-600 text-sm py-2">ロード中...</p>
+                <div className="p-4 flex justify-center">
+                  <p className="text-gray-600">ロード中...</p>
+                </div>
               ) : error ? (
-                <p className="text-red-500 text-sm py-2">エラーが発生しました</p>
+                <div className="p-4 flex justify-center">
+                  <p className="text-red-500">エラーが発生しました</p>
+                </div>
               ) : (
-                <div className="grid grid-cols-2 gap-2">
-                  {/* Add default background option */}
+                <div className="grid grid-cols-4 gap-3">
+                  {/* デフォルト背景 */}
                   <div
-                    className="cursor-pointer rounded-md overflow-hidden border-2 hover:border-blue-500 transition-all"
                     onClick={() => {
                       onBackgroundChange("/images/default-background.jpg");
                       setShowBackgrounds(false);
                     }}
+                    className="bg-gray-100 p-1 rounded-lg flex flex-col items-center cursor-pointer hover:ring-2 hover:ring-yellow-400 overflow-hidden"
                   >
-                    <div className="h-24 bg-gray-200 relative flex items-center justify-center">
+                    <div className="relative w-full h-24 mb-2 overflow-hidden rounded">
                       <Image
                         src="/images/default-background.jpg"
                         alt="Default"
-                        className="h-full w-full object-cover"
+                        className="object-cover w-full h-full"
                         width={300}
                         height={300}
                       />
-                      <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 truncate">
-                        デフォルト
-                      </div>
                     </div>
+                    <div className="text-xs text-gray-500 truncate w-full text-center">デフォルト</div>
                   </div>
 
-                  {/* Map through fetched backgrounds */}
+                  {/* ランダム背景 */}
                   {backgrounds.map((bg: BackgroundImage) => (
                     <div
                       key={bg.id}
-                      className="cursor-pointer rounded-md overflow-hidden border-2 hover:border-blue-500 transition-all"
                       onClick={() => {
                         onBackgroundChange(bg.url);
                         setShowBackgrounds(false);
                       }}
+                      className="bg-gray-100 p-1 rounded-lg flex flex-col items-center cursor-pointer hover:ring-2 hover:ring-yellow-400 overflow-hidden"
                     >
-                      <div className="h-24 bg-gray-200 relative flex items-center justify-center">
+                      <div className="relative w-full h-24 mb-2 overflow-hidden rounded">
                         <Image
                           src={bg.url}
                           alt={bg.title}
-                          className="h-full w-full object-cover"
+                          className="object-cover w-full h-full"
                           width={300}
                           height={300}
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 truncate">
-                          {bg.title}
-                        </div>
                       </div>
+                      <div className="text-xs text-gray-500 truncate w-full text-center">{bg.title}</div>
                     </div>
                   ))}
                 </div>
