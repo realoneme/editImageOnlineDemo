@@ -52,6 +52,8 @@ const TextElement = ({
   const [isEditing, setIsEditing] = useState(false);
   // 添加内部字体大小状态，确保在渲染期间一致性
   const [internalFontSize, setInternalFontSize] = useState(item.fontSize || 24);
+  // 添加用于检测移动设备双击的状态
+  const [lastTapTime, setLastTapTime] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const textRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -405,6 +407,21 @@ const TextElement = ({
         }}
         onTap={() => {
           onSelect();
+          
+          // 实现双击检测逻辑
+          const currentTime = new Date().getTime();
+          const tapLength = currentTime - lastTapTime;
+          
+          // 如果两次点击间隔小于 300ms，视为双击
+          if (tapLength < 300 && tapLength > 0) {
+            if (onOpenBottomEditor) {
+              onOpenBottomEditor(item.id, item.content);
+            } else if (isSelected && !isEditing) {
+              handleTextClick();
+            }
+          }
+          
+          setLastTapTime(currentTime);
         }}
         onDblClick={() => {
           // 双击时打开底部编辑器（如果提供了回调）
