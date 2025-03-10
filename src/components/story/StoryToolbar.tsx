@@ -62,6 +62,8 @@ const StoryToolbar = ({
                     src={`/images/sticker${stickerId}.png`}
                     alt={`Sticker ${stickerId}`}
                     className="w-full h-full object-cover"
+                    width={300}
+                    height={300}
                   />
                 </button>
               ))}
@@ -120,6 +122,8 @@ const StoryToolbar = ({
                         src="/images/default-background.jpg"
                         alt="Default"
                         className="h-full w-full object-cover"
+                        width={300}
+                        height={300}
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 truncate">
                         デフォルト
@@ -138,7 +142,13 @@ const StoryToolbar = ({
                       }}
                     >
                       <div className="h-24 bg-gray-200 relative flex items-center justify-center">
-                        <Image src={bg.url} alt={bg.title} className="h-full w-full object-cover" />
+                        <Image
+                          src={bg.url}
+                          alt={bg.title}
+                          className="h-full w-full object-cover"
+                          width={300}
+                          height={300}
+                        />
                         <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 truncate">
                           {bg.title}
                         </div>

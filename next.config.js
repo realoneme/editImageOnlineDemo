@@ -7,6 +7,10 @@ const nextConfig = {
   },
   // This ensures that server-side rendering is disabled for components that use window
   reactStrictMode: true,
+  // Configure images to allow external domains
+  images: {
+    domains: ['loremflickr.com'],
+  },
 };
 
 module.exports = nextConfig;
