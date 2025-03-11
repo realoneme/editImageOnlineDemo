@@ -12,7 +12,7 @@ const defaultItems: StoryItem[] = [];
 
 const StoryEditor = () => {
   const [story, setStory] = useState<StoryState>({
-    backgroundImage: "/images/default-background.jpg",
+    backgroundImage: "/images/default-background.png",
     items: defaultItems,
     selectedId: null,
   });
@@ -27,7 +27,7 @@ const StoryEditor = () => {
   const [selectedFont, setSelectedFont] = useState("var(--font-geist-sans)");
   const [selectedColor, setSelectedColor] = useState("#000000");
   const [textAlign, setTextAlign] = useState("left"); // left, center, right
-  
+
   // 可用字体列表
   const fontOptions = [
     { name: "Geist", variable: "var(--font-geist-sans)" },
@@ -43,10 +43,10 @@ const StoryEditor = () => {
     { name: "Noto Serif SC", variable: "var(--font-noto-serif-sc)" },
     { name: "系统默认", variable: "system-ui" },
     { name: "Arial", variable: "Arial" },
-    { name: "Times New Roman", variable: "Times New Roman" }
-  ]
+    { name: "Times New Roman", variable: "Times New Roman" },
+  ];
 
-  const [backgroundImage] = useImage(story.backgroundImage, 'anonymous');
+  const [backgroundImage] = useImage(story.backgroundImage, "anonymous");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const stageRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -266,8 +266,10 @@ const StoryEditor = () => {
         setStory({ ...story, selectedId });
       } catch {
         // 显示用户友好的错误提示
-        alert('画像の保存中にエラーが発生しました。外部画像を使用している場合は、ローカルの画像に変更してみてください。');
-        
+        alert(
+          "画像の保存中にエラーが発生しました。外部画像を使用している場合は、ローカルの画像に変更してみてください。"
+        );
+
         // Restore selection
         setStory({ ...story, selectedId });
       }
@@ -282,8 +284,6 @@ const StoryEditor = () => {
         const isSelected = item.id === story.selectedId;
 
         if (item.type === "text") {
-
-
           return (
             <TextElement
               key={item.id}
@@ -294,7 +294,6 @@ const StoryEditor = () => {
                 // IMPORTANT: We need to avoid calling both updateTextContent and updateItemPos in the same render cycle
                 // Handle content updates using a dedicated path to prevent conflicts
 
-                
                 if (newProps.content !== undefined) {
                   // Content update takes priority
                   updateTextContent(item.id, newProps.content);
@@ -304,7 +303,6 @@ const StoryEditor = () => {
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     const { content, ...otherProps } = newProps;
                     if (Object.keys(otherProps).length > 0) {
-
                       updateItemPos(item.id, otherProps);
                     }
                   }, 0);
@@ -482,9 +480,9 @@ const StoryEditor = () => {
                         const currentItem = story.items.find((item) => item.id === editingTextId);
                         if (currentItem) {
                           // 保留当前的fontSize和其他属性，只更新fontFamily
-                          updateItemPos(editingTextId, { 
+                          updateItemPos(editingTextId, {
                             fontFamily: font.variable,
-                            fontSize: currentItem.fontSize // 确保保留当前字体大小
+                            fontSize: currentItem.fontSize, // 确保保留当前字体大小
                           });
                         } else {
                           updateItemPos(editingTextId, { fontFamily: font.variable });
@@ -528,9 +526,9 @@ const StoryEditor = () => {
                         const currentItem = story.items.find((item) => item.id === editingTextId);
                         if (currentItem) {
                           // 保留当前的fontSize和其他属性，只更新颜色
-                          updateItemPos(editingTextId, { 
+                          updateItemPos(editingTextId, {
                             fill: color,
-                            fontSize: currentItem.fontSize // 确保保留当前字体大小
+                            fontSize: currentItem.fontSize, // 确保保留当前字体大小
                           });
                         } else {
                           updateItemPos(editingTextId, { fill: color });
@@ -557,9 +555,9 @@ const StoryEditor = () => {
                       const currentItem = story.items.find((item) => item.id === editingTextId);
                       if (currentItem) {
                         // 保留当前的fontSize和其他属性，只更新对齐方式
-                        updateItemPos(editingTextId, { 
+                        updateItemPos(editingTextId, {
                           align: "left",
-                          fontSize: currentItem.fontSize // 确保保留当前字体大小
+                          fontSize: currentItem.fontSize, // 确保保留当前字体大小
                         });
                       } else {
                         updateItemPos(editingTextId, { align: "left" });
@@ -580,9 +578,9 @@ const StoryEditor = () => {
                       const currentItem = story.items.find((item) => item.id === editingTextId);
                       if (currentItem) {
                         // 保留当前的fontSize和其他属性，只更新对齐方式
-                        updateItemPos(editingTextId, { 
+                        updateItemPos(editingTextId, {
                           align: "center",
-                          fontSize: currentItem.fontSize // 确保保留当前字体大小
+                          fontSize: currentItem.fontSize, // 确保保留当前字体大小
                         });
                       } else {
                         updateItemPos(editingTextId, { align: "center" });
@@ -603,9 +601,9 @@ const StoryEditor = () => {
                       const currentItem = story.items.find((item) => item.id === editingTextId);
                       if (currentItem) {
                         // 保留当前的fontSize和其他属性，只更新对齐方式
-                        updateItemPos(editingTextId, { 
+                        updateItemPos(editingTextId, {
                           align: "right",
-                          fontSize: currentItem.fontSize // 确保保留当前字体大小
+                          fontSize: currentItem.fontSize, // 确保保留当前字体大小
                         });
                       } else {
                         updateItemPos(editingTextId, { align: "right" });

@@ -103,10 +103,7 @@ const StoryToolbar = ({
             <div className="fixed bottom-16 left-0 right-0 mx-auto w-11/12 max-w-4xl bg-white p-3 rounded-md shadow-lg z-50 max-h-[60vh] overflow-y-auto">
               <div className="flex justify-between border-b border-gray-200 pb-2 mb-3">
                 <h3 className="text-gray-800 font-medium">背景の選択</h3>
-                <button 
-                  onClick={() => setShowBackgrounds(false)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
+                <button onClick={() => setShowBackgrounds(false)} className="text-gray-500 hover:text-gray-700">
                   ✓
                 </button>
               </div>
@@ -124,18 +121,18 @@ const StoryToolbar = ({
                   {/* デフォルト背景 */}
                   <div
                     onClick={() => {
-                      onBackgroundChange("/images/default-background.jpg");
+                      onBackgroundChange("/images/default-background.png");
                       setShowBackgrounds(false);
                     }}
                     className="bg-gray-100 p-1 rounded-lg flex flex-col items-center cursor-pointer hover:ring-2 hover:ring-yellow-400 overflow-hidden"
                   >
                     <div className="relative w-full h-24 mb-2 overflow-hidden rounded">
                       <Image
-                        src="/images/default-background.jpg"
+                        src="/images/default-background.png"
                         alt="Default"
-                        className="object-cover w-full h-full"
-                        width={300}
-                        height={300}
+                        className="object-contain w-full h-full"
+                        width={360}
+                        height={640}
                       />
                     </div>
                     <div className="text-xs text-gray-500 truncate w-full text-center">デフォルト</div>
